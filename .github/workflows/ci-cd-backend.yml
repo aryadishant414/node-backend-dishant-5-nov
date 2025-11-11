@@ -44,9 +44,12 @@ jobs:
             --comment "Deploy Node.js backend via GitHub Actions" \
             --parameters 'commands=[
               "echo --- Starting deployment ---",
-              "cd /home/ubuntu/node-express-hello-world || mkdir -p /home/ubuntu/node-express-hello-world && cd /home/ubuntu/node-express-hello-world",
+              "sudo mkdir -p /home/ubuntu/node-express-hello-world",
+              "sudo chown -R ubuntu:ubuntu /home/ubuntu/node-express-hello-world",
+              "sudo git config --system --add safe.directory /home/ubuntu/node-express-hello-world",
+              "cd /home/ubuntu/node-express-hello-world",
               "if [ ! -d .git ]; then git clone https://github.com/${{ github.repository }} .; else git pull origin main; fi",
-              "npm install --production",
+              "npm install --omit=dev",
               "sudo systemctl restart node-app",
               "echo --- Deployment complete ---"
             ]'
