@@ -48,7 +48,12 @@ jobs:
               "sudo chown -R ubuntu:ubuntu /home/ubuntu/node-express-hello-world",
               "sudo git config --system --add safe.directory /home/ubuntu/node-express-hello-world",
               "cd /home/ubuntu/node-express-hello-world",
-              "if [ ! -d .git ]; then git clone https://github.com/${{ github.repository }} .; else git pull origin main; fi",
+              "if [ ! -d .git ]; then \
+                  git clone https://github.com/${{ github.repository }} . --origin neworigin; \
+                else \
+                  git remote set-url neworigin https://github.com/${{ github.repository }}; \
+                  git pull neworigin main; \
+                fi",
               "npm install --omit=dev",
               "sudo systemctl restart node-app",
               "echo --- Deployment complete ---"
