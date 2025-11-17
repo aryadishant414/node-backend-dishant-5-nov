@@ -29,7 +29,7 @@ app.get('/', routes.home);
 app.get('/api/customers', function (req, res) {
   const customers = [
     { id: 1, name: 'John Smith TEST', email: 'jsmith@test.com', phone: '123456789' },
-    { id: 2, name: 'ABCDX', email: 'abcd@test.com', phone: '987654321' },
+    { id: 2, name: 'Dishant Arya', email: 'abcd@test.com', phone: '987654321' },
     { id: 3, name: 'Tyrion', email: 'tyrionXX@test.com', phone: '555666777' }
   ];
   res.json(customers);
